@@ -9,6 +9,9 @@ compatibility_flags = ["nodejs_compat"]
 # binding = "AI"
 
 # KV for storing temporary delay states
+# Run: wrangler kv:namespace create DELAY_TIMER_KV
+# Run: wrangler kv:namespace create DELAY_TIMER_KV --preview
+# Then update the IDs below
 [[kv_namespaces]]
 binding = "DELAY_TIMER_KV"
 id = "your_kv_namespace_id"
@@ -40,20 +43,24 @@ BITRIX24_CLIENT_SECRET = "X5272Aj5C9NrKfWoz4kZ6s61YWiCrdz2Dd1KCCDVjuXOiHTl3B"
 # Production environment
 [env.production]
 name = "bitrix24-delay-timer-prod"
-vars = { 
-  ENVIRONMENT = "production",
-  BITRIX24_CLIENT_ID = "local.68a194d2b8d3c5.76602508",
-  BITRIX24_CLIENT_SECRET = "X5272Aj5C9NrKfWoz4kZ6s61YWiCrdz2Dd1KCCDVjuXOiHTl3B"
-}
+
+[env.production.vars]
+ENVIRONMENT = "production"
+MAX_DELAY_HOURS = "24"
+DEFAULT_DELAY_SECONDS = "30"
+BITRIX24_CLIENT_ID = "local.68a194d2b8d3c5.76602508"
+BITRIX24_CLIENT_SECRET = "X5272Aj5C9NrKfWoz4kZ6s61YWiCrdz2Dd1KCCDVjuXOiHTl3B"
 
 # Development environment (preview)
 [env.staging]
 name = "bitrix24-delay-timer-staging"
-vars = { 
-  ENVIRONMENT = "staging",
-  BITRIX24_CLIENT_ID = "local.68a194d2b8d3c5.76602508",
-  BITRIX24_CLIENT_SECRET = "X5272Aj5C9NrKfWoz4kZ6s61YWiCrdz2Dd1KCCDVjuXOiHTl3B"
-}
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+MAX_DELAY_HOURS = "24"
+DEFAULT_DELAY_SECONDS = "30"
+BITRIX24_CLIENT_ID = "local.68a194d2b8d3c5.76602508"
+BITRIX24_CLIENT_SECRET = "X5272Aj5C9NrKfWoz4kZ6s61YWiCrdz2Dd1KCCDVjuXOiHTl3B"
 
 # Durable Objects migrations
 [[migrations]]
