@@ -1,8 +1,6 @@
 # 🕰️ Bitrix24 DelayTimer - Cloudflare Workers
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/YOUR_USERNAME/bitrix24-DelayTimer)
-
-> 🚨 **Setup Required**: Replace `YOUR_USERNAME` with your GitHub username after creating the repository
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/DangTinh311/bitrix24-DelayTimer)
 
 Serverless implementation của DelayTimer cho Bitrix24 automation rules sử dụng Cloudflare Workers.
 
