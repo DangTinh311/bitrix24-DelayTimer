@@ -34,16 +34,26 @@ max_batch_timeout = 30
 ENVIRONMENT = "development"
 MAX_DELAY_HOURS = "24"
 DEFAULT_DELAY_SECONDS = "30"
+BITRIX24_CLIENT_ID = "local.68a194d2b8d3c5.76602508"
+BITRIX24_CLIENT_SECRET = "X5272Aj5C9NrKfWoz4kZ6s61YWiCrdz2Dd1KCCDVjuXOiHTl3B"
 
 # Production environment
 [env.production]
 name = "bitrix24-delay-timer-prod"
-vars = { ENVIRONMENT = "production" }
+vars = { 
+  ENVIRONMENT = "production",
+  BITRIX24_CLIENT_ID = "local.68a194d2b8d3c5.76602508",
+  BITRIX24_CLIENT_SECRET = "X5272Aj5C9NrKfWoz4kZ6s61YWiCrdz2Dd1KCCDVjuXOiHTl3B"
+}
 
 # Development environment (preview)
 [env.staging]
 name = "bitrix24-delay-timer-staging"
-vars = { ENVIRONMENT = "staging" }
+vars = { 
+  ENVIRONMENT = "staging",
+  BITRIX24_CLIENT_ID = "local.68a194d2b8d3c5.76602508",
+  BITRIX24_CLIENT_SECRET = "X5272Aj5C9NrKfWoz4kZ6s61YWiCrdz2Dd1KCCDVjuXOiHTl3B"
+}
 
 # Durable Objects migrations
 [[migrations]]

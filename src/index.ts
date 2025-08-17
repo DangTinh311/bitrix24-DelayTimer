@@ -38,6 +38,44 @@ app.get('/', (c) => {
   })
 })
 
+// Bitrix24 application installation endpoint
+app.get('/install', (c) => {
+  return c.json({
+    status: 'success',
+    message: 'Bitrix24 DelayTimer application installed successfully',
+    application: {
+      name: 'DelayTimer',
+      version: '1.0.0',
+      client_id: c.env.BITRIX24_CLIENT_ID || 'local.68a194d2b8d3c5.76602508',
+      capabilities: [
+        'delay_processing',
+        'automation_rules',
+        'queue_management',
+        'global_edge_deployment'
+      ]
+    },
+    endpoints: {
+      handler: '/api/activities/DelayTimer',
+      health: '/',
+      install: '/install'
+    },
+    timestamp: new Date().toISOString()
+  })
+})
+
+// Bitrix24 application info endpoint
+app.get('/app-info', (c) => {
+  return c.json({
+    application_id: c.env.BITRIX24_CLIENT_ID || 'local.68a194d2b8d3c5.76602508',
+    name: 'DelayTimer',
+    description: 'Serverless delay functionality for Bitrix24 automation rules',
+    version: '1.0.0',
+    supported_activities: ['DelayTimer'],
+    scopes: ['bizproc', 'user_brief'],
+    handler_url: '/api/activities/DelayTimer'
+  })
+})
+
 // Bitrix24 activity handler endpoint
 app.post('/api/activities/DelayTimer', validateBitrix24Request, async (c) => {
   try {
