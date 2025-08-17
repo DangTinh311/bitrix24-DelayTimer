@@ -1,0 +1,47 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "bitrix24-delay-timer"
+main = "src/index.ts"
+compatibility_date = "2024-11-27"
+compatibility_flags = ["nodejs_compat"]
+
+# KV for storing temporary delay states
+[[kv_namespaces]]
+binding = "DELAY_TIMER_KV"
+id = "REPLACE_WITH_YOUR_KV_ID"              # ← Paste your KV ID here
+preview_id = "REPLACE_WITH_YOUR_PREVIEW_ID" # ← Paste your preview ID here
+
+# Durable Objects for complex delay management
+[[durable_objects.bindings]]
+name = "DELAY_TIMER_DURABLE"
+class_name = "DelayTimerDurable"
+
+# Queue for handling delay processing
+[[queues.producers]]
+binding = "DELAY_QUEUE"
+queue = "delay-processing-queue"
+
+[[queues.consumers]]
+queue = "delay-processing-queue"
+max_batch_size = 10
+max_batch_timeout = 30
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+MAX_DELAY_HOURS = "24"
+DEFAULT_DELAY_SECONDS = "30"
+
+# Production environment
+[env.production]
+name = "bitrix24-delay-timer-prod"
+vars = { ENVIRONMENT = "production" }
+
+# Development environment (preview)
+[env.staging]
+name = "bitrix24-delay-timer-staging"
+vars = { ENVIRONMENT = "staging" }
+
+# Durable Objects migrations
+[[migrations]]
+tag = "v1"
+new_classes = [ "DelayTimerDurable" ]
